@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Image Process</title>
+ 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+ 
+    <link href="../static/jumbotron-narrow.css" rel="stylesheet">
+
+    <link href="../static/style.css" rel="stylesheet">
+ 
+ 
+</head>
+ 
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/">Home</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Image Process</h3>
+        </div>
+ 
+        <div class="jumbotron">
+		 <div id="image-container">
+            <img src=" {{url_for('send_image', filename=image_name)}} " style="max-width: 560px;">
+            </div>
+          </div>
+        
+          <div class="row marketing">
+                
+                <form id="form-submit" action="{{ url_for('submit') }}" method="POST" enctype="multipart/form-data">
+                        <h4>1. Flip</h4>    
+                        
+                          <input type = "radio" id="btnFlipV"    name="flip" value="Vertical">
+                          <label for="btnFlipV">Vertical</label><br>
+                          <input type = "radio" id="btnFlipH"   name="flip" value="Horizontal">
+                          <label for="btnFlipH">Horizontal</label><br>
+                        
+                        <h4>2. Rotate Degree</h4>
+                          <div class="text-left">
+                              <input type="number" name="angle" min="-359" max="359" style="width : 100px"; placeholder="degrees" >        
+                          </div>
+                        <h4>3. Resize</h4>
+                          <div class="text-left">     
+                              <input type="number" placeholder="X" min="1" name="X" value="ResizeX" style="width : 100px"; >                 
+                              <input type="number" placeholder="Y" min="1" name="Y" value = "ResizeY"style="width : 100px";  >                                
+                          </div>
+                        
+                        <h4>4. Thumbnail</h4>
+                          <div class="text-left">
+                              <input type="number" placeholder="Size Width" min="1" name="sizeX" value="thumbnailX" style="width : 100px"; > 
+                              <input type="number" placeholder="Size Height" min="1" name="sizeY"value="thumbnailY" style="width : 100px"; >  
+                          </div> 
+                        
+                        
+                        <h4>5. GrayScale</h4>
+                        <div class="text-left">
+                            <input type ="radio" id="grayscale"  name="grayscale" value="GrayScale">
+                            <label for="grayscale">GrayScale</label><br>
+                        </div>
+                        <h4>6. Rotate Left/Right</h4>
+                            <div class="text-left">      
+                                <input type="radio" id="rotateLeft"   name="Rotate" value="Left">
+                                <label for="rotateLeft">Left</label><br>
+                                <input type="radio" id="rotateRight"   name="Rotate" value="Right">
+                                <label for="rotateRight">Right</label><br>
+                            </div> 
+                        <button id="submit" class="btn btn-lg btn-success" type="submit" style = "margin-left: 80%;">Submit</button>
+                        <input type="text" class="hidden" name="image" value="{{ image_name }}">  
+                </form>
+                            
+                
+          </div>
+    </div>
+</body>
